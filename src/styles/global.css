@@ -1,0 +1,131 @@
+:root {
+	--primary: #3b82f6;
+	--primary-dark: #1e40af;
+	--secondary: #8b5cf6;
+	--success: #10b981;
+	--warning: #f59e0b;
+	--danger: #ef4444;
+
+	--text-primary: #1f2937;
+	--text-secondary: #6b7280;
+	--text-light: #9ca3af;
+
+	--bg-primary: #ffffff;
+	--bg-secondary: #f9fafb;
+	--bg-tertiary: #f3f4f6;
+
+	--border-color: #e5e7eb;
+	--border-radius: 8px;
+
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+	--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+	--primary: #60a5fa;
+	--text-primary: #f3f4f6;
+	--text-secondary: #d1d5db;
+	--text-light: #9ca3af;
+
+	--bg-primary: #111827;
+	--bg-secondary: #1f2937;
+	--bg-tertiary: #374151;
+
+	--border-color: #2d3748;
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+	--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+	h1 {
+		@apply text-4xl md:text-5xl font-bold text-text-primary;
+	}
+
+	h2 {
+		@apply text-3xl md:text-4xl font-bold text-text-primary;
+	}
+
+	h3 {
+		@apply text-2xl md:text-3xl font-bold text-text-primary;
+	}
+
+	h4 {
+		@apply text-xl md:text-2xl font-semibold text-text-primary;
+	}
+
+	p {
+		@apply text-text-secondary leading-relaxed;
+	}
+
+	a {
+		@apply text-primary hover:text-primary-dark transition-colors duration-200;
+	}
+
+	button {
+		@apply transition-all duration-200;
+	}
+
+	input,
+	textarea,
+	select {
+		@apply bg-bg-primary text-text-primary border border-border-color rounded-lg;
+	}
+}
+
+@layer components {
+	.container-custom {
+		@apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+	}
+
+	.btn-primary {
+		@apply inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+	}
+
+	.btn-secondary {
+		@apply inline-flex items-center justify-center px-6 py-3 bg-bg-tertiary text-text-primary font-semibold rounded-lg hover:bg-border-color transition-colors duration-200;
+	}
+
+	.btn-outline {
+		@apply inline-flex items-center justify-center px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition-colors duration-200;
+	}
+
+	.input-field {
+		@apply w-full px-4 py-3 bg-bg-primary text-text-primary border border-border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200;
+	}
+
+	.card {
+		@apply bg-bg-primary rounded-lg border border-border-color p-6 shadow-md hover:shadow-lg transition-shadow duration-300;
+	}
+
+	.card-hover {
+		@apply card hover:border-primary cursor-pointer group;
+	}
+
+	.section {
+		@apply py-16 md:py-24 lg:py-32;
+	}
+
+	.section-header {
+		@apply text-center mb-12 md:mb-16;
+	}
+
+	.gradient-text {
+		@apply bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent;
+	}
+
+	.glass-effect {
+		@apply bg-white/10 dark:bg-white/5 backdrop-blur-lg border border-white/20;
+	}
+
+	.fade-in {
+		@apply animate-fadeIn;
+	}
+
+	.slide-in {
+		@apply animate-slideIn;
+	}
+}
