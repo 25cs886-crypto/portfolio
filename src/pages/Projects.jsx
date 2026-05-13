@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import SectionTitle from "../components/common/SectionTitle";
 import ProjectFilter from "../components/projects/ProjectFilter";
 import ProjectGrid from "../components/projects/ProjectGrid";
 import ProjectModal from "../components/projects/ProjectModal";
@@ -12,7 +11,9 @@ export const Projects = () => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const { data: projects, loading } = useFetch("/projects");
 
-	const projectList = Array.isArray(projects) ? projects : projects?.data || [];
+	const projectList = useMemo(() => {
+		return Array.isArray(projects) ? projects : projects?.data || [];
+	}, [projects]);
 
 	const categories = useMemo(() => {
 		const cats = new Set();

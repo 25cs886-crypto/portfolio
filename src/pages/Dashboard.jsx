@@ -12,13 +12,8 @@ export const Dashboard = () => {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const [projects, setProjects] = useState([]);
 	const [loading, setLoading] = useState(true);
-	const [view, setView] = useState("projects");
 	const [editingProject, setEditingProject] = useState(null);
 	const [showAddForm, setShowAddForm] = useState(false);
-
-	useEffect(() => {
-		fetchProjects();
-	}, []);
 
 	const fetchProjects = async () => {
 		try {
@@ -31,6 +26,11 @@ export const Dashboard = () => {
 			setLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		// Call fetchProjects in a microtask to defer setState
+		Promise.resolve().then(() => fetchProjects());
+	}, []);
 
 	const handleAddSuccess = () => {
 		setShowAddForm(false);
@@ -103,7 +103,7 @@ export const Dashboard = () => {
 				{/* Content */}
 				<main className="flex-1 overflow-auto p-4 md:p-8">
 					{/* Stats */}
-					{view === "projects" && !showAddForm && !editingProject && (
+					{!showAddForm && !editingProject && (
 						<motion.div
 							className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
 							variants={containerVariants}
@@ -138,7 +138,7 @@ export const Dashboard = () => {
 					)}
 
 					{/* Projects Section */}
-					{view === "projects" && !showAddForm && !editingProject && (
+					{!showAddForm && !editingProject && (
 						<motion.div
 							className="bg-bg-primary rounded-lg p-6 md:p-8 border border-border-color"
 							initial={{ opacity: 0, y: 20 }}

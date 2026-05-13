@@ -105,8 +105,8 @@ export const TECH_STACK = {
 // Form Validation
 export const VALIDATION_CONFIG = {
 	EMAIL_PATTERN: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-	URL_PATTERN: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
-	PHONE_PATTERN: /^[+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+	URL_PATTERN: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/,
+	PHONE_PATTERN: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}]$/,
 	PASSWORD_MIN_LENGTH: 6,
 	PASSWORD_PATTERN: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/,
 	NAME_MIN_LENGTH: 2,

@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { FiEdit2, FiTrash2, FiStar } from "react-icons/fi";
-import Button from "../common/Button";
 
 export const ProjectTable = ({ projects, loading, onEdit, onDelete }) => {
 	if (loading) {

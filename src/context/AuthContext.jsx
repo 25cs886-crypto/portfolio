@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from "react";
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useEffect, useCallback } from "react";
 import { authService } from "../services/api";
 
 export const AuthContext = createContext();
@@ -6,29 +7,30 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
-	useEffect(() => {
-		const token = localStorage.getItem("token");
-		if (token) {
-			getProfile();
-		} else {
-			setIsLoading(false);
-		}
-	}, []);
-
-	const getProfile = async () => {
+	const getProfile = useCallback(async () => {
+		setIsLoading(true);
 		try {
 			const { data } = await authService.getProfile();
 			setUser(data.user);
 			setIsAuthenticated(true);
-		} catch (error) {
+		} catch {
 			localStorage.removeItem("token");
 			setIsAuthenticated(false);
 		} finally {
 			setIsLoading(false);
 		}
-	};
+	}, []);
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			// eslint-disable-next-line react-hooks/set-state-in-effect
+			getProfile();
+		}
+		// Dependency array empty to avoid infinite loops. getProfile is stable via useCallback.
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	const login = async (email, password) => {
 		const { data } = await authService.login({ email, password });

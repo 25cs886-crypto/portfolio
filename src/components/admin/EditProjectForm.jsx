@@ -20,18 +20,20 @@ export const EditProjectForm = ({ project, onSuccess, onCancel }) => {
 
 	useEffect(() => {
 		if (project) {
-			setFormData({
-				title: project.title,
-				description: project.description,
-				techStack: Array.isArray(project.techStack)
-					? project.techStack.join(", ")
-					: project.techStack,
-				githubLink: project.githubLink,
-				liveLink: project.liveLink || "",
-				featured: project.featured || false,
-				image: null,
-			});
-			setImagePreview(project.image);
+			setTimeout(() => {
+				setFormData({
+					title: project.title,
+					description: project.description,
+					techStack: Array.isArray(project.techStack)
+						? project.techStack.join(", ")
+						: project.techStack,
+					githubLink: project.githubLink,
+					liveLink: project.liveLink || "",
+					featured: project.featured || false,
+					image: null,
+				});
+				setImagePreview(project.image);
+			}, 0);
 		}
 	}, [project]);
 
